@@ -1,7 +1,7 @@
-import HomeMonitoringSys from 'src/views/monitoring-system'
+import HomeViews from 'src/pages/home/views'
 
 const HomePage = () => {
-  return <HomeMonitoringSys />
+  return <HomeViews />
 }
 
 export default HomePage

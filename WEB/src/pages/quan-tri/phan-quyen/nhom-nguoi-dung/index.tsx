@@ -3,7 +3,7 @@ import { useRequireAuth } from 'src/@core/hooks/useRequireAuth'
 import Error401 from 'src/pages/401'
 import { useEffect, useState } from 'react'
 import BoxLoading from 'src/@core/components/box-loading'
-import RolePermit from 'src/views/manage/role-permit'
+import RolePermit from 'src/pages/quan-tri/views/role-permit'
 
 const RolePermitPage = () => {
   const { hasPermission } = useRequireAuth()

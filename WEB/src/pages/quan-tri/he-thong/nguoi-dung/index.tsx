@@ -3,7 +3,7 @@ import { useRequireAuth } from 'src/@core/hooks/useRequireAuth'
 import Error401 from 'src/pages/401'
 import { useEffect, useState } from 'react'
 import BoxLoading from 'src/@core/components/box-loading'
-import ListAccount from 'src/views/manage/account-settings/ListAccount'
+import ListAccount from 'src/pages/quan-tri/views/account-settings/ListAccount'
 
 const ListAccountPage = () => {
   const { hasPermission } = useRequireAuth()
