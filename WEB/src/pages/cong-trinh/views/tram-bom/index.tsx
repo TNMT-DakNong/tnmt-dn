@@ -19,7 +19,7 @@ import FormCongTrinh from 'src/pages/cong-trinh/views/form'
 const Map = dynamic(() => import('src/@core/components/map'), { ssr: false })
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
-const CongTrinhDapDangViews = () => {
+const CongTrinhTramBomViews = () => {
   const [mapCenter, setMapCenter] = useState([12.25967, 107.798345])
   const [mapZoom, setMapZoom] = useState(9.5)
   const [showLabel, setShowLabel] = useState(false)
@@ -87,7 +87,13 @@ const CongTrinhDapDangViews = () => {
       },
     ]
     },
-
+    {
+      id: 'tenCT',
+      label: 'Nhiệm vụ chính',
+      rowspan: 2,
+      pinned: 'left',
+      minWidth: 150,
+   },
     {
       id: 'viTriCT',
       label: (
@@ -121,7 +127,74 @@ const CongTrinhDapDangViews = () => {
     ]
     },
 
-   
+    {
+      id: 'mucnuocho',
+      label: 'Thông số hồ chứa',
+      colspan: 6,
+      children: [
+        {
+              id: 'dientichLV',
+              label: (
+                <span>
+                  {' '}
+                  Diện tích <br /> lưu vực <br /> (km2)
+                </span>
+              ),
+              align: 'center'
+        },
+      {
+        id: 'dientichtuoi',
+        label: (
+          <span>
+            {' '}
+            Diện tích <br /> tưới <br /> (km2)
+          </span>
+        ),
+        align: 'center'
+      },
+
+      {
+        id: 'dungtichtoanbo',
+        label: (
+          <span>
+            {' '}
+            Dung tích <br /> toàn bộ <br /> (triệu m3)
+          </span>
+        ),
+        align: 'center'
+      },
+      {
+        id: 'mnc',
+        label: (
+          <span>
+            {' '}
+            MNC <br /> (m) <br /> 
+          </span>
+        ),
+        align: 'center'
+      },
+      {
+        id: 'mndbt',
+        label: (
+          <span>
+            {' '}
+            MNDBT <br /> (m) <br /> 
+          </span>
+        ),
+        align: 'center'
+      },
+      {
+        id: 'MNGC',
+        label: (
+          <span>
+            {' '}
+            MNGC <br /> (m) <br /> 
+          </span>
+        ),
+        align: 'center'
+      },
+    ]
+  },
 
   {
     id: 'mucnuocho',
@@ -143,7 +216,7 @@ const CongTrinhDapDangViews = () => {
       label: (
         <span>
           {' '}
-          CHiều cao <br /> đập Hmax <br /> (m)
+          Chiều cao <br /> đập Hmax <br /> (m)
         </span>
       ),
       align: 'center'
@@ -253,6 +326,47 @@ const CongTrinhDapDangViews = () => {
       ]
     },
     {
+      id: 'giayphep',
+      label: 'Phân loại công trình',
+      align: 'left',
+      children: [
+        {
+          id: 'lon',
+          label: (
+            <span>
+              Lớn
+              <br />
+            </span>
+          ),
+          align: 'left',
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
+        },
+        {
+          id: 'kichthuoc',
+          label: (
+            <span>
+              Vừa
+              <br />
+            </span>
+          ),
+          align: 'left',
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
+        },
+        {
+          id: 'kichthuoc',
+          label: (
+            <span>
+              Nhỏ
+              <br />
+            </span>
+          ),
+          align: 'left',
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
+        },
+      ]
+    },
+
+    {
       id: 'namxaydung',
       label: (
         <span>
@@ -261,19 +375,8 @@ const CongTrinhDapDangViews = () => {
         </span>
       ),
       align: 'left',
+    
     },
-    {
-      id: 'dientichtuoi',
-      label: (
-        <span>
-          Diện tích tưới
-          <br />     
-          (ha)       
-        </span>
-      ),
-      align: 'left',
-    },
-
     {
       id: 'donviquanly',
       label: (
@@ -389,5 +492,4 @@ const CongTrinhDapDangViews = () => {
   )
 }
 
-export default CongTrinhDapDangViews
-
+export default CongTrinhTramBomViews

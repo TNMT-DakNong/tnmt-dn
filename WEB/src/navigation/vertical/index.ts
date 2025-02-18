@@ -73,13 +73,9 @@ const navigation = (router: any): VerticalNavItemsType => {
             title: 'Đập dâng',
             path: `${basePaths.cong_trinh}?page=dap-dang`
           },
-          {
-            title: 'Cống  ',
-            path: `${basePaths.cong_trinh}?page=cong`
-          },
-          {
+         {
             title: 'Trạm bơm  ',
-            path: `${basePaths.cong_trinh}?page=tram-boom`
+            path: `${basePaths.cong_trinh}?page=tram-bom`
           },
           {
             title: 'Kênh ',
@@ -204,7 +200,19 @@ const navigation = (router: any): VerticalNavItemsType => {
           }
         ]
       },
-
+      {
+        title: 'An toàn đập',
+        children: [
+          {
+            title: 'Đăng ký an toàn đập',
+            path: `${basePaths.cong_trinh}/thong-bao`
+          },
+          {
+            title: 'Quy định PL về QLATD',
+            path: `${basePaths.cong_trinh}/canh-bao`
+          }
+        ]
+      },
       {
         title: 'Thông báo - cảnh báo',
         children: [

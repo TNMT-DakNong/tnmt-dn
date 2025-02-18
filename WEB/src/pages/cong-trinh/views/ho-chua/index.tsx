@@ -6,7 +6,6 @@ import { Box, Typography, Paper, FormGroup, FormControlLabel, Checkbox } from '@
 import Grid from '@mui/material/Unstable_Grid2'
 
 //Other Imports
-import ShowFilePDF from 'src/@core/components/show-file-pdf'
 import dynamic from 'next/dynamic'
 import { ConverterCood } from 'src/@core/components/map/convert-coord'
 import { useRouter } from 'next/router'
@@ -14,7 +13,6 @@ import { getData } from 'src/api/axios'
 import DeleteData from 'src/@core/components/delete-data'
 import MapLegend from 'src/pages/cong-trinh/views/MapLegend'
 import TableComponent, { TableColumn } from 'src/@core/components/table'
-import { formatDate, formatNum } from 'src/@core/components/formater'
 import ConstructionToolBar from 'src/pages/cong-trinh/views/toolbar'
 import FormCongTrinh from 'src/pages/cong-trinh/views/form'
 
@@ -22,7 +20,7 @@ const Map = dynamic(() => import('src/@core/components/map'), { ssr: false })
 
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const CongTrinhHoChuaViews = () => {
-  const [mapCenter, setMapCenter] = useState([15.01, 108.69])
+  const [mapCenter, setMapCenter] = useState([12.25967, 107.798345])
   const [mapZoom, setMapZoom] = useState(9.5)
   const [showLabel, setShowLabel] = useState(false)
   const [postSuccess, setPostSuccess] = useState(false)
@@ -53,7 +51,7 @@ const CongTrinhHoChuaViews = () => {
       label: 'Tên công trình',
       rowspan: 2,
       pinned: 'left',
-      minWidth: 200,
+      minWidth: 150,
       elm: (row: any) => (
         <Typography className='btnShowFilePdf' onClick={() => zoomConstruction(ConverterCood(row?.y, row?.x))}>
           {row?.tenCT}
@@ -61,416 +59,335 @@ const CongTrinhHoChuaViews = () => {
       )
     },
     {
-      id: 'viTriCT',
+      id: 'Diadiem',
       label: 'Địa điểm',
-
-      rowspan: 2,
-      align: 'left',
-      minWidth: 200
-    },
-    {
-      id: '#',
-      label: (
-        <Box>
-          Toạ độ đập chính
-          <br /> (VN2000)
-        </Box>
-      ),
-      minWidth: 120,
-      rowspan: 2,
-      elm: (row: any) => (
-        <span>
-          X: {row?.x}
-          <br /> Y: {row?.y}
-        </span>
-      )
-    },
-    { id: 'nguonNuocKT', label: 'Nguồn nước khai thác', rowspan: 2, align: 'left', minWidth: 150 },
-    { id: 'phuongThucKT', label: 'Phương thức khai thác', rowspan: 2, align: 'left', minWidth: 600 },
-    {
-      id: 'cheDoKT',
-      label: 'Chế độ khai thác',
-      rowspan: 2,
-      align: 'left',
+      align: 'center',
       minWidth: 200,
-      elm: (row: any) => <span>{row?.thongso?.cheDoKT}</span>
+      colspan: 2,
+      children: [
+        {
+              id: 'xa',
+              label: (
+                <span>
+                  {' '}
+                  Xã <br />  
+                </span>
+              ),
+              align: 'center'
+            },
+          {
+        id: 'huyen',
+        label: (
+          <span>
+            {' '}
+            Huyện <br />   
+          </span>
+        ),
+        align: 'center'
+      },
+    ]
     },
     {
-      id: 'mucDichKT',
-      label: 'Mục đích khai thác',
+      id: 'tenCT',
+      label: 'Nhiệm vụ chính',
+      rowspan: 2,
+      pinned: 'left',
+      minWidth: 150,
+   },
+    {
+      id: 'viTriCT',
+      label: (
+        <span>
+          {' '}
+          Tọa độ đập chính <br /> (VN2000) 
+        </span>
+      ),
+      colspan: 2,
+      children: [
+        {
+              id: 'BD1',
+              label: (
+                <span>
+                  {' '}
+                  X <br />  
+                </span>
+              ),
+              align: 'center'
+            },
+          {
+        id: 'BD2',
+        label: (
+          <span>
+            {' '}
+            Y <br />   
+          </span>
+        ),
+        align: 'center'
+      },
+    ]
+    },
+
+    {
+      id: 'mucnuocho',
+      label: 'Thông số hồ chứa',
+      colspan: 6,
+      children: [
+        {
+              id: 'dientichLV',
+              label: (
+                <span>
+                  {' '}
+                  Diện tích <br /> lưu vực <br /> (km2)
+                </span>
+              ),
+              align: 'center'
+        },
+      {
+        id: 'dientichtuoi',
+        label: (
+          <span>
+            {' '}
+            Diện tích <br /> tưới <br /> (km2)
+          </span>
+        ),
+        align: 'center'
+      },
+
+      {
+        id: 'dungtichtoanbo',
+        label: (
+          <span>
+            {' '}
+            Dung tích <br /> toàn bộ <br /> (triệu m3)
+          </span>
+        ),
+        align: 'center'
+      },
+      {
+        id: 'mnc',
+        label: (
+          <span>
+            {' '}
+            MNC <br /> (m) <br /> 
+          </span>
+        ),
+        align: 'center'
+      },
+      {
+        id: 'mndbt',
+        label: (
+          <span>
+            {' '}
+            MNDBT <br /> (m) <br /> 
+          </span>
+        ),
+        align: 'center'
+      },
+      {
+        id: 'MNGC',
+        label: (
+          <span>
+            {' '}
+            MNGC <br /> (m) <br /> 
+          </span>
+        ),
+        align: 'center'
+      },
+    ]
+  },
+
+  {
+    id: 'mucnuocho',
+    label: 'Đập chính',
+    colspan: 3,
+    children: [
+      {
+            id: 'dientichLV',
+            label: (
+              <span>
+                {' '}
+                Cao trình <br /> đỉnh đập <br /> (m)
+              </span>
+            ),
+            align: 'center'
+          },
+    {
+      id: 'chieucaodap',
+      label: (
+        <span>
+          {' '}
+          Chiều cao <br /> đập Hmax <br /> (m)
+        </span>
+      ),
+      align: 'center'
+    },
+
+    {
+      id: 'chieudaidap',
+      label: (
+        <span>
+          {' '}
+          Chiều dài <br /> đập <br /> (m)
+        </span>
+      ),
+      align: 'center'
+    }, 
+  ]
+},
+ 
+   
+    {
+      id: 'DapPhu',
+      label: (
+        <span>
+          {' '}
+          Đập phụ <br /> (số lượng) <br /> 
+        </span>
+      ),
       rowspan: 2,
       align: 'left',
       minWidth: 150,
       elm: (row: any) => <span>{row?.mucDichKT}</span>
     },
-    { id: 'namBatDauVanHanh', label: 'Năm vận hành', rowspan: 2, align: 'left' },
-    { id: 'tieuvung_quyhoach', label: 'Tiểu vùng quy hoạch', rowspan: 2, align: 'left', minWidth: 150 },
+   
+ 
     {
       id: 'thongso',
-      label: 'Thông số công trình',
+      label: 'Cống lấy nước',
       align: 'left',
       children: [
         {
-          id: 'capCT',
-          label: (
-            <span>
-              Cấp
-              <br />
-              Công trình
-            </span>
-          ),
+          id: 'kichthuoc',
+          label: 'Kích thước',
           align: 'left',
           elm: (row: any) => row?.thongso?.capCT
         },
         {
-          id: 'dienTichLuuVuc',
+          id: 'hinthuc',
           label: (
             <span>
-              DTLV
+              hình thức
               <br />
-              (km2)
+              (có áp/không áp)
+            </span>
+          ),
+          align: 'left',
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
+        },
+    
+      ]
+    },
+
+    //tran xa lu
+    {
+      id: 'giayphep',
+      label: 'Tràn xả lũ',
+      align: 'left',
+      children: [
+        {
+          id: 'caotrinhnguongtran',
+          label: (
+            <span>
+              Cao trình
+              <br />
+              Ngưỡng tràn
+              <br />
+              (m)
             </span>
           ),
           align: 'left',
           elm: (row: any) => row?.thongso?.dienTichLuuVuc
         },
         {
-          id: 'muaTrungBinhNam',
+          id: 'kichthuoc',
           label: (
             <span>
-              X <sub>TB năm</sub> (m)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.muaTrungBinhNam,
-          align: 'left'
-        },
-        {
-          id: 'qTrungBinhNam',
-          label: (
-            <span>
-              Q <sub>TB năm</sub>(m3/s)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.qTrungBinhNam,
-          align: 'left'
-        },
-        {
-          id: 'congSuatLM',
-          label: (
-            <span>
-              Công suất
+              Kích thước
               <br />
-              lắp máy <br /> MW
-            </span>
-          ),
-          align: 'left',
-          elm: (row: any) => row?.thongso?.congSuatLM
-        },
-        {
-          id: 'congSuatDamBao',
-          label: (
-            <span>
-              Công suất
+              X * Y
               <br />
-              đảm bảo <br /> MW
+              (m)
             </span>
           ),
           align: 'left',
-          elm: (row: any) => row?.thongso?.congSuatDamBao
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
         },
         {
-          id: 'chieuCaoDap',
+          id: 'kichthuoc',
           label: (
             <span>
-              Chiều cao
-              <br />
-              đập <br /> (m)
+              Hình thức
+              <br />            
             </span>
           ),
           align: 'left',
-          elm: (row: any) => row?.thongso?.chieuCaoDap
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
         },
-        {
-          id: 'chieuDaiDap',
-          label: (
-            <span>
-              Chiều dài
-              <br />
-              đập <br /> (m)
-            </span>
-          ),
-          align: 'left',
-          elm: (row: any) => row?.thongso?.chieuDaiDap
-        },
-        {
-          id: 'caoTrinhDap',
-          label: (
-            <span>
-              Cao trình <br />
-              đập <br /> (m)
-            </span>
-          ),
-          align: 'left',
-          elm: (row: any) => row?.thongso?.caoTrinhDap
-        },
-        {
-          id: 'qmaxNM',
-          label: (
-            <span>
-              Q<sub>max</sub>(m<sup>3</sup>/s)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.qmaxNM,
-          align: 'left'
-        },
-        {
-          id: 'qtt',
-          label: (
-            <span>
-              Q<sub>TT</sub>(m<sup>3</sup>/s)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.qtt,
-          align: 'left'
-        },
-        {
-          id: 'qDamBao',
-          label: (
-            <span>
-              Q<sub>đảm bảo</sub>(m<sup>3</sup>/s)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.qDamBao,
-          align: 'left'
-        },
-        {
-          id: 'hmax',
-          label: (
-            <span>
-              H<sub>max</sub> (m)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.hmax,
-          align: 'left'
-        },
-        {
-          id: 'hmin',
-          label: (
-            <span>
-              H<sub>min</sub> (m)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.hmin,
-          align: 'left'
-        },
-        {
-          id: 'htoiThieu',
-          label: (
-            <span>
-              H<sub>TT</sub> (m)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.htoiThieu,
-          align: 'left'
-        },
-        { id: 'mnc', label: 'MNC', align: 'left', elm: (row: any) => row?.thongso?.mnc },
-        { id: 'mndbt', label: 'MNDBT(m)', align: 'left', elm: (row: any) => row?.thongso?.mndbt },
-        { id: 'mnltk', label: 'MNLTK(m)', align: 'left', elm: (row: any) => row?.thongso?.mnltk },
-        { id: 'mnlkt', label: 'MNLKT(m)', align: 'left', elm: (row: any) => row?.thongso?.mnlkt },
-        {
-          id: 'dungTichToanBo',
-          label: (
-            <span>
-              W<sub>toàn bộ</sub>(triệu m<sup>3</sup>)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.dungTichToanBo,
-          align: 'left'
-        },
-        {
-          id: 'dungTichChet',
-          label: (
-            <span>
-              W<sub> chết </sub>(triệu m<sup>3</sup>)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.dungTichChet,
-          align: 'left'
-        },
-        {
-          id: 'dungTichHuuIch',
-          label: (
-            <span>
-              W<sub>hữu ích</sub>(triệu m<sup>3</sup>)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.dungTichHuuIch,
-          align: 'left'
-        },
-        {
-          id: 'soLuongMayBom',
-          label: 'Số máy bơm',
-          elm: (row: any) => row?.thongso?.soLuongMayBom,
-          align: 'left'
-        },
-        {
-          id: 'qThietKe',
-          label: (
-            <span>
-              Q<sub>TK</sub> (m<sup>3</sup>/h)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.qThietKe,
-          align: 'left'
-        },
-        {
-          id: 'qThucTe',
-          label: (
-            <span>
-              Q<sub>TT</sub> (m<sup>3</sup>/h)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.qThucTe,
-          align: 'left'
-        },
-        {
-          id: 'dienTichTuoiThietKe',
-          label: (
-            <span>
-              F<sub>tưới TK</sub> (ha)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.dienTichTuoiThietKe,
-          align: 'left'
-        },
-        {
-          id: 'dienTichTuoiThucTe',
-          label: (
-            <span>
-              F<sub>tưới TT</sub> (ha)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.dienTichTuoiThucTe,
-          align: 'left'
-        },
-        {
-          id: 'thoiGianBomTB',
-          label: (
-            <span>
-              T<sub>bơm TB</sub>(h)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.thoiGianBomTB,
-          align: 'left'
-        },
-        {
-          id: 'thoiGianBomNhoNhat',
-          label: (
-            <span>
-              T<sub>bơm min</sub>(h)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.thoiGianBomNhoNhat,
-          align: 'left'
-        },
-        {
-          id: 'thoiGianBomLonNhat',
-          label: (
-            <span>
-              T<sub>bơm max</sub>(h)
-            </span>
-          ),
-          elm: (row: any) => row?.thongso?.thoiGianBomLonNhat,
-          align: 'left'
-        }
       ]
     },
-
-    //license
     {
       id: 'giayphep',
-      label: 'Giấy phép',
+      label: 'Phân loại công trình',
       align: 'left',
       children: [
         {
-          id: 'soGP',
-          label: 'Số GP',
+          id: 'lon',
+          label: (
+            <span>
+              Lớn
+              <br />
+            </span>
+          ),
           align: 'left',
-          minWidth: 150,
-          elm: (row: any) => (
-            <div style={{ width: '100%' }}>
-              {row.giayphep.map((e: any) => (
-                <div key={e.id}>
-                  <ShowFilePDF name={e?.soGP} src={e?.fileGiayPhep} />
-                </div>
-              ))}
-            </div>
-          )
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
         },
         {
-          id: 'thoihan',
-          label: 'Thời hạn',
+          id: 'kichthuoc',
+          label: (
+            <span>
+              Vừa
+              <br />
+            </span>
+          ),
           align: 'left',
-          minWidth: 150,
-          elm: (row: any) => (
-            <div style={{ width: '100%' }}>
-              {row.giayphep?.map((e: any) => (
-                <div key={e.id}>{formatDate(e.ngayKy)}</div>
-              ))}
-            </div>
-          )
-        }
-      ]
-    },
-    {
-      id: 'tiencq',
-      label: 'Tiền cấp quyền',
-      align: 'left',
-      children: [
-        {
-          id: 'soQDTCQ',
-          label: 'Số QĐ',
-          align: 'left',
-          minWidth: 150,
-          elm: (row: any) => (
-            <div style={{ width: '100%' }}>
-              {row.giayphep?.map((e: any) =>
-                e.tiencq.map((c: any) => (
-                  <div key={c?.id}>
-                    <ShowFilePDF name={c?.soQDTCQ} src={c?.filePDF} />
-                  </div>
-                ))
-              )}
-            </div>
-          )
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
         },
         {
-          id: 'ngayKy',
-          label: 'Ngày ký',
+          id: 'kichthuoc',
+          label: (
+            <span>
+              Nhỏ
+              <br />
+            </span>
+          ),
           align: 'left',
-          minWidth: 150,
-          elm: (row: any) => (
-            <div style={{ width: '100%' }}>
-              {row.giayphep?.map((e: any) => e.tiencq.map((c: any) => <div key={c?.id}>{formatDate(c?.ngayKy)}</div>))}
-            </div>
-          )
+          elm: (row: any) => row?.thongso?.dienTichLuuVuc
         },
-        {
-          id: 'tongTienCQ',
-          label: 'Tổng tiền',
-          align: 'left',
-          minWidth: 150,
-          elm: (row: any) => (
-            <div style={{ width: '100%' }}>
-              {row.giayphep?.map((e: any) =>
-                e.tiencq.map((c: any) => <div key={c?.id}>{formatNum(c?.tongTienCQ)}</div>)
-              )}
-            </div>
-          )
-        }
       ]
     },
 
+    {
+      id: 'namxaydung',
+      label: (
+        <span>
+          Năm xây dựng
+          <br />            
+        </span>
+      ),
+      align: 'left',
+    
+    },
+    {
+      id: 'donviquanly',
+      label: (
+        <span>
+          Đơn vị quản lý
+          <br />            
+        </span>
+      ),
+      align: 'left',
+    
+    },
     { id: 'actions', label: 'Thao tác', align: 'center', pinned: 'right' }
   ]
 

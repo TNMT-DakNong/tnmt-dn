@@ -5,6 +5,8 @@ import Error401 from 'src/pages/401'
 import Error404 from 'src/pages/404'
 import CongTrinhHoChuaViews from 'src/pages/cong-trinh/views/ho-chua'
 import CongTrinhDapDangViews from 'src/pages/cong-trinh/views/dap-dang'
+import CongTrinhKenhViews from './views/kenh'
+import CongTrinhTramBomViews from './views/tram-bom'
 
 type ComponentMap = {
   [key: string]: {
@@ -33,6 +35,12 @@ const CongTrinhPage = () => {
       },
       'dap-dang': {
         default: CongTrinhDapDangViews
+      },
+      'kenh': {
+        default: CongTrinhKenhViews
+      },
+      'tram-bom': {
+        default: CongTrinhTramBomViews
       }
     }),
     []

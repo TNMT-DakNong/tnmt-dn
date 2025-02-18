@@ -165,20 +165,19 @@ const MapLegend: FC<MapLegendProps> = ({ onChange }) => {
           },
           {
             id: 'nuocduoidat',
-            label: ' CÔNG TRÌNH VÙNG TƯỚI',
+            label: ' HUYỆN',
             children: [
-              { label: 'Kênh', id: 'giengdao' },
-              { label: 'Cống', id: 'giengkhoan' },
-              { label: 'Trạm bơm', id: 'thamdo' },
-              { label: 'Đập dâng', id: 'thamdo' },
-              { label: 'Công trình khác', id: 'congtrinhkhac_ndd' }
+              { label: 'TP. Gia Nghĩa', id: 'giengdao' },
+              { label: 'Cư Jút', id: 'giengkhoan' },
+              { label: 'Đắk Glong', id: 'thamdo' },
+              { label: 'Đắk Mil', id: 'thamdo' },
+              { label: 'Đắk Rlấp', id: 'congtrinhkhac_ndd' },
+              { label: 'Đắk Song', id: 'congtrinhkhac_ndd' },
+              { label: 'Krông Nô', id: 'congtrinhkhac_ndd' },
+              { label: 'Tuy Đức', id: 'congtrinhkhac_ndd' },
             ]
           },
-          {
-            id: 'xathai',
-            label: 'DỮ LIỆU VÙNG TƯỚI',
-            children: [{ label: 'Danh sách vùng tưới', id: 'khu_cumcn_taptrung' }]
-          }
+         
         ])
         setInitialItems([
           'nuocmat',
